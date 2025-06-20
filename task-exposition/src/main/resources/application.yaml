@@ -1,7 +1,0 @@
-spring:
-  application:
-    name: task
-  datasource:
-    url: jdbc:postgresql://localhost:5432/demo
-    username: demo
-    password: test
