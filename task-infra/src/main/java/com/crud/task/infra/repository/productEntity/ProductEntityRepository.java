@@ -5,9 +5,10 @@ import com.crud.task.domain.port.IProductRepository;
 import com.crud.task.infra.entity.ProductEntity;
 import com.crud.task.infra.mapper.IProductEntityMapper;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 
 @AllArgsConstructor
@@ -35,8 +36,8 @@ public class ProductEntityRepository implements IProductRepository {
     }
 
     @Override
-    public List<Product> findAll() {
-        List<ProductEntity> entities = productEntityRepository.findAll();
-        return mapper.listEntitiesToPojos(entities);
+    public Page<Product> findAll(Pageable pageable) {
+        Page<ProductEntity> entities = productEntityRepository.findAll(pageable);
+        return mapper.mapPage(entities);
     }
 }

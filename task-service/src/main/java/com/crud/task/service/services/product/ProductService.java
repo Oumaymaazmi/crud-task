@@ -5,6 +5,10 @@ import com.crud.task.domain.pojo.Product;
 import com.crud.task.domain.port.IProductRepository;
 import com.crud.task.service.config.MessageResolver;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -66,5 +70,10 @@ public class ProductService {
     public void delete(Long id) {
         findById(id);
         productRepository.deleteById(id);
+    }
+
+    public Page<Product> findAllPaginated(int page, int size) {
+        Pageable pageable = PageRequest.of(page, size, Sort.by("creationDate").descending());
+        return productRepository.findAll(pageable);
     }
 }
