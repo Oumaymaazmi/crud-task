@@ -1,24 +1,40 @@
 package com.crud.task.exposition.controller;
 
 import com.crud.task.domain.pojo.Product;
+import com.crud.task.exposition.in.ProductIn;
+import com.crud.task.exposition.mapper.IProductInMapper;
 import com.crud.task.service.services.product.ProductService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import jakarta.validation.Valid;
+import lombok.AllArgsConstructor;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("products")
+@RequestMapping("product")
+@AllArgsConstructor
 public class ProductController {
 
     private final ProductService productService;
-
-    public ProductController(ProductService productService) {
-        this.productService = productService;
-    }
+    private final IProductInMapper mapper;
 
     @GetMapping("{id}")
     public Product getById(@PathVariable Long id) {
         return productService.findById(id);
+    }
+
+    @PostMapping()
+    public void create(@RequestBody @Valid ProductIn productIn) {
+        Product product = mapper.inOutToDto(productIn);
+        productService.create(product);
+    }
+
+    @PutMapping("/{id}/update")
+    public void update(@PathVariable Long id, @RequestBody @Valid ProductIn productIn) {
+        Product product = mapper.inOutToDto(productIn);
+        productService.update(id, product);
+    }
+
+    @DeleteMapping("/{id}")
+    public void update(@PathVariable Long id) {
+        productService.delete(id);
     }
 }

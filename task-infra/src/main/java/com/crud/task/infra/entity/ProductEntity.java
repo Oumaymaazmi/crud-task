@@ -1,5 +1,6 @@
 package com.crud.task.infra.entity;
 
+import com.crud.task.domain.enumeration.ProductCategoryEnum;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -32,6 +33,11 @@ public class ProductEntity {
     private Integer quantity;
 
     private String createdBy;
+
+    private String updatedBy;
+
+    @Enumerated(EnumType.STRING)
+    private ProductCategoryEnum category;
 
     @CreationTimestamp
     @Column(updatable = false)
