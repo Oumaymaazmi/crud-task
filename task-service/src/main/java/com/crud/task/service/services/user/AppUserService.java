@@ -17,6 +17,14 @@ public class AppUserService {
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
 
+    public AppUser findByUserName(String username) {
+        AppUser user = userRepository.findByUserName(username);
+        if (user == null) {
+            throw new FunctionalException("User not exist!");
+        }
+        return user;
+    }
+
     public void saveUser(AppUser user) {
         AppUser userFromDb = userRepository.findByUserName(user.getUsername());
         if (userFromDb != null) {
@@ -27,10 +35,7 @@ public class AppUserService {
     }
 
     public AuthenticationResult login(AppUser user) {
-        AppUser userFromDb = userRepository.findByUserName(user.getUsername());
-        if (userFromDb == null) {
-            throw new FunctionalException("User not exist!");
-        }
+        AppUser userFromDb = findByUserName(user.getUsername());
         if (!passwordEncoder.matches(user.getPassword(), userFromDb.getPassword())) {
             throw new FunctionalException("error.user.invalid-credentials");
         }

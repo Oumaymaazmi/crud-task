@@ -6,8 +6,12 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 @Builder
-@AllArgsConstructor
 public class AuthenticationResult {
     private String token;
     private String email;
+
+    public AuthenticationResult(String email, String token) {
+        this.email = email;
+        this.token = token;
+    }
 }

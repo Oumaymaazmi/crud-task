@@ -19,10 +19,15 @@ spring:
     baseline-on-migrate: true
     locations: classpath:db/migration
 
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          secret: "K8fY1r@vM#7n!pLzEwQsXcVjBzTkGhRm"
+          expiration-time : 86400000
 logging:
   level:
     org.flywaydb: DEBUG
-
 
 app:
   front-end-url: http://localhost:3000/
