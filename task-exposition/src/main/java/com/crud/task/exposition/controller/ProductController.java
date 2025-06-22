@@ -2,8 +2,8 @@ package com.crud.task.exposition.controller;
 
 import com.crud.task.domain.pojo.Product;
 import com.crud.task.exposition.in.ProductIn;
-import com.crud.task.exposition.mapper.IProductInMapper;
-import com.crud.task.exposition.mapper.IProductOutMapper;
+import com.crud.task.exposition.mapper.product.IProductInMapper;
+import com.crud.task.exposition.mapper.product.IProductOutMapper;
 import com.crud.task.exposition.out.ProductOut;
 import com.crud.task.service.services.product.ProductService;
 import jakarta.validation.Valid;

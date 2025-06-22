@@ -1,7 +1,8 @@
-package com.crud.task.exposition.mapper;
+package com.crud.task.exposition.mapper.product;
 
 import com.crud.task.domain.pojo.Product;
 import com.crud.task.exposition.in.ProductIn;
+import com.crud.task.exposition.mapper.IMapperInOut;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")

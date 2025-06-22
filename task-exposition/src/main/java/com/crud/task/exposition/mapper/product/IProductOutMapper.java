@@ -1,6 +1,7 @@
-package com.crud.task.exposition.mapper;
+package com.crud.task.exposition.mapper.product;
 
 import com.crud.task.domain.pojo.Product;
+import com.crud.task.exposition.mapper.IMapperInOut;
 import com.crud.task.exposition.out.ProductOut;
 import org.mapstruct.Mapper;
 

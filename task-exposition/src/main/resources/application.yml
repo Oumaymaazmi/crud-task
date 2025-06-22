@@ -22,3 +22,7 @@ spring:
 logging:
   level:
     org.flywaydb: DEBUG
+
+
+app:
+  front-end-url: http://localhost:3000/

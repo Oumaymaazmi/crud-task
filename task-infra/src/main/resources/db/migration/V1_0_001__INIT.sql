@@ -9,3 +9,9 @@ CREATE TABLE product (
     creation_date TIMESTAMP,
     update_date TIMESTAMP
 );
+
+CREATE TABLE app_user (
+    id BIGSERIAL PRIMARY KEY,
+    username VARCHAR(255),
+    password VARCHAR(255)
+);
