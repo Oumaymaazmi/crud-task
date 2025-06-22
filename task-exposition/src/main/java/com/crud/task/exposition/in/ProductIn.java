@@ -3,18 +3,14 @@ package com.crud.task.exposition.in;
 import com.crud.task.domain.enumeration.ProductCategoryEnum;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.experimental.SuperBuilder;
+import lombok.*;
 
 import java.math.BigDecimal;
 
 @Getter
 @Setter
 @NoArgsConstructor
-@SuperBuilder
+@Builder
 @AllArgsConstructor
 public class ProductIn {
 

@@ -1,16 +1,13 @@
 package com.crud.task.exposition.in;
 
 import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import lombok.experimental.SuperBuilder;
 
 @Getter
 @Setter
 @NoArgsConstructor
-@SuperBuilder
+@Builder
 @AllArgsConstructor
 public class AppUserIn {
 
