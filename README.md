@@ -31,40 +31,13 @@ It provides secure REST APIs to manage products and users using JWT authenticati
 
 ---
 
-## 📥 Clone the Repository
-
-```bash
-git clone https://github.com/Oumaymaazmi/crud-task.git
-```
-
----
-
-## ⚙️ Configure the Database
-
-1. Create a PostgreSQL database:
-
-```sql
-CREATE DATABASE product_db;
-```
-
-2. Update `task-exposition/src/main/resources/application.yaml`:
-
-```yaml
-spring:
-  datasource:
-    url: jdbc:postgresql://localhost:5432/product_db
-    username: your_username
-    password: your_password
-
-```
-
 ## 📌 Features
 
 - ✅ Product CRUD (create, read, update, delete)
 - 🔐 JWT Authentication (register / login)
 - 🚫 Secure API endpoints
 - 🧠 Clean DDD architecture
-- 🧪 Unit-tested service layer
+- 🧪 Unit-tested service layer ( task-service/src/test )
 - 📜 Flyway DB migrations
 - 🌍 Custom error messages (`message.properties`)
 - 💬 Centralized exception handling
