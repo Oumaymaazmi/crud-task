@@ -47,7 +47,7 @@ git clone https://github.com/Oumaymaazmi/crud-task.git
 CREATE DATABASE product_db;
 ```
 
-2. Update `exposition/src/main/resources/application.yaml`:
+2. Update `task-exposition/src/main/resources/application.yaml`:
 
 ```yaml
 spring:
