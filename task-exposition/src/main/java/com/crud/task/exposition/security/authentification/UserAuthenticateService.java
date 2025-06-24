@@ -2,7 +2,7 @@ package com.crud.task.exposition.security.authentification;
 
 import com.crud.task.domain.exception.FunctionalException;
 import com.crud.task.domain.pojo.AppUser;
-import com.crud.task.service.services.user.AppUserService;
+import com.crud.task.service.services.user.IAppUserService;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class UserAuthenticateService implements UserDetailsService {
 
-    private final AppUserService userService;
+    private final IAppUserService userService;
 
     private final IUserDetailsMapper userDetailMapper;
 

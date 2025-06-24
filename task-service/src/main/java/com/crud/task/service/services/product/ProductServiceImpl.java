@@ -15,7 +15,7 @@ import java.math.BigDecimal;
 
 @Service
 @AllArgsConstructor
-public class ProductService {
+public class ProductServiceImpl implements IProductService {
     private static final String ERROR_PRODUCT_NOT_FOUND = "error.product.notFound";
     private static final String ERROR_NAME_REQUIRED = "error.product.nameRequired";
     private static final String ERROR_PRICE_REQUIRED = "error.product.priceRequired";
@@ -37,12 +37,14 @@ public class ProductService {
                 .orElseThrow(() -> new FunctionalException(messageResolver.get(ERROR_PRODUCT_NOT_FOUND, id)));
     }
 
+    @Override
     public void create(Product product) {
         validateProduct(product);
         setDefaultValues(product);
         productRepository.save(product);
     }
 
+    @Override
     public void update(Long id, Product product) {
         validateProduct(product);
 
@@ -87,11 +89,13 @@ public class ProductService {
         }
     }
 
+    @Override
     public void delete(Long id) {
         findById(id);
         productRepository.deleteById(id);
     }
 
+    @Override
     public Page<Product> findAllPaginated(int page, int size) {
         Pageable pageable = PageRequest.of(page, size, Sort.by("creationDate").descending());
         return productRepository.findAll(pageable);

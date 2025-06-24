@@ -18,7 +18,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-public class ProductServiceTest {
+public class IProductServiceTest {
 
     private static final String ERROR_PRICE_REQUIRED = "error.product.priceRequired";
 
@@ -29,12 +29,12 @@ public class ProductServiceTest {
     private MessageResolver messageResolver;
 
     @InjectMocks
-    private ProductService productService;
+    private ProductServiceImpl IProductService;
 
     @Test
     void shouldSaveProduct() {
         Product product = buildDefaultProduct();
-        productService.create(product);
+        IProductService.create(product);
         verify(productRepository).save(product);
     }
 
@@ -44,7 +44,7 @@ public class ProductServiceTest {
         product.setPrice(null);
         when(messageResolver.get(ERROR_PRICE_REQUIRED)).thenReturn("Product price is required");
 
-        FunctionalException exception = assertThrows(FunctionalException.class, () -> productService.create(product));
+        FunctionalException exception = assertThrows(FunctionalException.class, () -> IProductService.create(product));
         assertEquals("Product price is required", exception.getMessage());
     }
 
@@ -55,7 +55,7 @@ public class ProductServiceTest {
         expected.setId(id);
         when(productRepository.findById(id)).thenReturn(Optional.of(expected));
 
-        Product result = productService.findById(id);
+        Product result = IProductService.findById(id);
 
         assertNotNull(result);
         assertEquals(result, expected);

@@ -4,7 +4,7 @@ import com.crud.task.exposition.in.AppUserIn;
 import com.crud.task.exposition.mapper.user.IAuthMapper;
 import com.crud.task.exposition.mapper.user.IUserInMapper;
 import com.crud.task.service.dto.AuthenticationResult;
-import com.crud.task.service.services.user.AppUserService;
+import com.crud.task.service.services.user.IAppUserService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 @AllArgsConstructor
 public class AuthController {
 
-    private final AppUserService userService;
+    private final IAppUserService userService;
     private final IUserInMapper mapperIn;
     private final IAuthMapper authMapper;
 
