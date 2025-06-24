@@ -20,6 +20,14 @@ public class ProductService {
     private static final String ERROR_NAME_REQUIRED = "error.product.nameRequired";
     private static final String ERROR_PRICE_REQUIRED = "error.product.priceRequired";
     private static final String ERROR_PRICE_INVALID = "error.product.priceInvalid";
+    private static final String ERROR_QTE_LARGE = "error.product.quantityLarge";
+    private static final String ERROR_PRICE_LARGE = "error.product.priceLarge";
+    private static final String ERROR_QUANTITY_INVALID = "error.product.quantityInvalid";
+    private static final String ERROR_NAME_INVALID_CHARACTERS = "error.product.nameInvalidCharacters";
+
+    private static final BigDecimal MAX_PRICE = new BigDecimal("999999999999999999.99");
+    private static final Integer MAX_QUANTITY = 1_000_000;
+    private static final String NAME_PATTERN = "^[a-zA-Z0-9 _-]+$";
 
     private final IProductRepository productRepository;
     private final MessageResolver messageResolver;
@@ -59,11 +67,23 @@ public class ProductService {
         if (product.getName() == null || product.getName().isBlank()) {
             throw new FunctionalException(messageResolver.get(ERROR_NAME_REQUIRED));
         }
+        if (!product.getName().matches(NAME_PATTERN)) {
+            throw new FunctionalException(messageResolver.get(ERROR_NAME_INVALID_CHARACTERS));
+        }
         if (product.getPrice() == null) {
             throw new FunctionalException(messageResolver.get(ERROR_PRICE_REQUIRED));
         }
         if (product.getPrice().compareTo(BigDecimal.ZERO) < 0) {
             throw new FunctionalException(messageResolver.get(ERROR_PRICE_INVALID));
+        }
+        if (product.getPrice().compareTo(MAX_PRICE) > 0) {
+            throw new FunctionalException(messageResolver.get(ERROR_PRICE_LARGE));
+        }
+        if (product.getQuantity() != null && product.getQuantity() < 0) {
+            throw new FunctionalException(messageResolver.get(ERROR_QUANTITY_INVALID));
+        }
+        if (product.getQuantity() != null && product.getQuantity() > MAX_QUANTITY) {
+            throw new FunctionalException(messageResolver.get(ERROR_QTE_LARGE, MAX_QUANTITY));
         }
     }
 
